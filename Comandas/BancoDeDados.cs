@@ -3,7 +3,7 @@
 namespace Comandas
 {
     // classe q representa o banco de dados
-    public class AppDbContext : DbContext
+    public class BancoDeDados : DbContext
     {
         //propriedade q representa a tabela Usuarios
         public DbSet<Usuario> Usuarios { get; set; }
