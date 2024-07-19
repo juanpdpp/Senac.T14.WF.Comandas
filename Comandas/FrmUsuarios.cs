@@ -17,6 +17,20 @@ namespace Comandas
         public FrmUsuarios()
         {
             InitializeComponent();
+            // metodo q lista os usuarios
+            ListarUsuarios();
+        }
+
+        private void ListarUsuarios()
+        {
+            // 1 conectar ao banco
+            using (var banco = new BancoDeDados())
+            {
+                // 2 SELECT * FROM usuarios
+                var usuarios = banco.Usuarios.ToList();
+                // 3 popular a tabela na tela
+                dgvUsuarios.DataSource = usuarios;
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -30,6 +44,18 @@ namespace Comandas
                 CriarUsuario();
             else
                 AtualizarUsuario();
+
+            DesabilitarCampos();
+            ListarUsuarios();
+            LimparCampos();
+        }
+
+        private void LimparCampos()
+        {
+            txtId.TextButton = string.Empty;
+            txtNome.TextButton = string.Empty;
+            txtEmail.TextButton = string.Empty;
+            txtSenha.TextButton = string.Empty;
         }
 
         private void AtualizarUsuario()
@@ -71,6 +97,27 @@ namespace Comandas
         private void btnNovo_Click(object sender, EventArgs e)
         {
             eNovo = true;
+            HabilitarCampos();
+        }
+
+        private void HabilitarCampos()
+        {
+            txtNome.Enabled = true;
+            txtEmail.Enabled = true;
+            txtSenha.Enabled = true;
+        }
+
+        private void DesabilitarCampos()
+        {
+            txtNome.Enabled = false;
+            txtEmail.Enabled = false;
+            txtSenha.Enabled = false;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            // indica q esta editando um usuario
+            eNovo = false;
         }
     }
 }
