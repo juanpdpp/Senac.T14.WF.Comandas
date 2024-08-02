@@ -156,7 +156,7 @@
             btnSalvar.Lighting = false;
             btnSalvar.LinearGradient_Background = false;
             btnSalvar.LinearGradientPen = false;
-            btnSalvar.Location = new Point(162, 333);
+            btnSalvar.Location = new Point(274, 333);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.PenWidth = 15;
             btnSalvar.Rounding = true;
@@ -320,7 +320,7 @@
             btnEditar.Lighting = false;
             btnEditar.LinearGradient_Background = false;
             btnEditar.LinearGradientPen = false;
-            btnEditar.Location = new Point(274, 333);
+            btnEditar.Location = new Point(162, 333);
             btnEditar.Name = "btnEditar";
             btnEditar.PenWidth = 15;
             btnEditar.Rounding = true;
@@ -527,6 +527,7 @@
             dgvUsuarios.RowHeadersWidth = 51;
             dgvUsuarios.Size = new Size(332, 190);
             dgvUsuarios.TabIndex = 7;
+            dgvUsuarios.CellClick += dgvUsuarios_CellClick;
             // 
             // FrmUsuarios
             // 
@@ -543,6 +544,7 @@
             Name = "FrmUsuarios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Usuarios";
+            Load += FrmUsuarios_Load;
             cyberGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             ResumeLayout(false);

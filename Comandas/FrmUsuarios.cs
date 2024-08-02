@@ -118,6 +118,44 @@ namespace Comandas
         {
             // indica q esta editando um usuario
             eNovo = false;
+            HabilitarCampos();
+        }
+
+        private void FrmUsuarios_Load(object sender, EventArgs e)
+        {
+            CarregarUsuarios();
+        }
+
+        private void CarregarUsuarios()
+        {
+            //conectar no banco
+            using (var banco = new BancoDeDados())
+            {
+                //realizar uma consulta na tabela usuario
+                var usuarios = banco.Usuarios.ToList();
+                //copular os dados do grid(dataGridView)
+                dgvUsuarios.DataSource = usuarios;
+            }
+
+        }
+
+        private void dgvUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //verifica se o indice da linha, é maior q 0
+            //saber se existe uma linha selecionada
+            if (e.RowIndex >= 0)
+            {
+
+                var id = dgvUsuarios.Rows[e.RowIndex].Cells["Id"].Value.ToString();
+                var nome = dgvUsuarios.Rows[e.RowIndex].Cells["Nome"].Value.ToString();
+                var email = dgvUsuarios.Rows[e.RowIndex].Cells["Email"].Value.ToString();
+                var senha = dgvUsuarios.Rows[e.RowIndex].Cells["Senha"].Value.ToString();
+
+                txtId.TextButton = id;
+                txtNome.TextButton = nome;
+                txtEmail.TextButton = email;
+                txtSenha.TextButton = senha;
+            }
         }
     }
 }
