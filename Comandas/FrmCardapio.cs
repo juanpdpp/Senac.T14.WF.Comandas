@@ -21,5 +21,34 @@ namespace Comandas
         {
             Close();
         }
+
+
+        private void LimparCampos()
+        {
+            txtPrato.TextButton = string.Empty;
+        }
+
+        private void FrmCardapio_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            var eNovo = true;
+            new FrmCardapioCad(eNovo).ShowDialog();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            var eNovo = false;
+            new FrmCardapioCad(eNovo).ShowDialog();
+        }
     }
+
 }

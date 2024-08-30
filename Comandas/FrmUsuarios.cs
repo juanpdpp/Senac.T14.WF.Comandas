@@ -24,7 +24,7 @@ namespace Comandas
         private void ListarUsuarios()
         {
             // 1 conectar ao banco
-            using (var banco = new BancoDeDados())
+            using (var banco = new DataBase())
             {
                 // 2 SELECT * FROM usuarios
                 var usuarios = banco.Usuarios.ToList();
@@ -60,7 +60,7 @@ namespace Comandas
 
         private void AtualizarUsuario()
         {
-            using (var banco = new BancoDeDados())
+            using (var banco = new DataBase())
             {
                 //consulta um usuario da tabela, usando um id
                 var usuario = banco
@@ -78,7 +78,7 @@ namespace Comandas
         private void CriarUsuario()
         {
             // acessar o banco 
-            using (var banco = new BancoDeDados())
+            using (var banco = new DataBase())
             {
                 // criar um novo usuario
                 var novoUsuario = new Usuario();
@@ -129,7 +129,7 @@ namespace Comandas
         private void CarregarUsuarios()
         {
             //conectar no banco
-            using (var banco = new BancoDeDados())
+            using (var banco = new DataBase())
             {
                 //realizar uma consulta na tabela usuario
                 var usuarios = banco.Usuarios.ToList();

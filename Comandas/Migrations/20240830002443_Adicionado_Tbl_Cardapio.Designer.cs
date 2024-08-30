@@ -2,6 +2,7 @@
 using Comandas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Comandas.Migrations
 {
     [DbContext(typeof(DataBase))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240830002443_Adicionado_Tbl_Cardapio")]
+    partial class Adicionado_Tbl_Cardapio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.5");

@@ -15,7 +15,7 @@ namespace Comandas
             // criar uma variavel do tipo AppDbContext
             // usar a variavel e acessar o context
             // executar a migracao == F5
-            using (var banco = new BancoDeDados())
+            using (var banco = new DataBase())
             {
                 // exec a migracao(CREATE TABLE Usuarios)
                 banco.Database.Migrate();
