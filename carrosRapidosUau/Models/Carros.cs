@@ -12,6 +12,6 @@
 
         public string modelo { get; set; } = string.Empty;
 
-        public string ano { get; set; } = string.Empty;
+        public int ano { get; set; }
     }
 }

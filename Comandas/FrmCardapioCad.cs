@@ -14,12 +14,42 @@ namespace Comandas
     {
         //variavel que indica se esta criando um novo cardapio
         bool eNovo = false;
-        public FrmCardapioCad(bool acao)
+        private FrmCardapio _frmCardapio;
+
+        public int ID { get; }
+        public string? TITULO { get; }
+        public string? DESCRICAO { get; }
+        public decimal PRECO { get; }
+        public bool POSSUI_PREPARO { get; }
+
+        public FrmCardapioCad(bool acao, FrmCardapio frmCardapio)
         {
             eNovo = acao;
+            _frmCardapio = frmCardapio;
             InitializeComponent();
 
 
+        }
+
+        public FrmCardapioCad(bool acao, int iD, string? tITULO, string? dESCRICAO, decimal pRECO, bool pOSSUI_PREPARO, FrmCardapio frmCardapio) : this(acao, frmCardapio)
+        {
+            eNovo = acao;
+            InitializeComponent();
+            ID = iD;
+            TITULO = tITULO;
+            DESCRICAO = dESCRICAO;
+            PRECO = pRECO;
+            POSSUI_PREPARO = pOSSUI_PREPARO;
+            PopularCampos();
+        }
+
+        private void PopularCampos()
+        {
+            txtId.TextButton = ID.ToString();
+            txtTitulo.TextButton = TITULO;
+            txtDescricao.TextButton = DESCRICAO;
+            txtPreco.TextButton = PRECO.ToString();
+            chkPreparo.Checked = POSSUI_PREPARO;
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -45,20 +75,31 @@ namespace Comandas
                 //executa o metodo q realiza o update na tabela
                 AtualizarCardapio();
             }
+            _frmCardapio.ListarCardapios();
             //fecha a tela atual
             Close();
         }
 
         private void AtualizarCardapio()
         {
-            throw new NotImplementedException();
+            //conecta no banco de dados :)
+            using (var banco = new DataBase())
+            {
+                var cardapio = banco.Cardapios.FirstOrDefault(c => c.Id == int.Parse(txtId.TextButton));
+
+                cardapio.Titulo = txtTitulo.TextButton;
+                cardapio.Descricao = txtDescricao.TextButton;
+                cardapio.Preco = decimal.Parse(txtPreco.TextButton);
+                cardapio.PossuiPreparo = chkPreparo.Checked;
+                banco.SaveChanges();
+            }
         }
 
         private void AdicionarCardapio()
         {
             //usar o banco de dados
             //cria uma variavel banco que instancia uma conexa com o banco de dad
-            using(var banco = new DataBase())
+            using (var banco = new DataBase())
             {
                 var novoCardapio = new Cardapio()
                 {
